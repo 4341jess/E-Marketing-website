@@ -1,0 +1,63 @@
+﻿/* Style for the navbar */
+.navbar {
+    background-color: #343a40; /* Dark background for the navigation */
+    padding: 10px 20px; /* Adds padding around the navbar */
+    border-radius: 5px; /* Adds a slight rounded effect */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center; /* Vertically aligns logo and text */
+    color: white; /* Company name color */
+    font-size: 1.5rem; /* Adjust the company name font size */
+}
+
+    .navbar-brand img {
+        max-height: 30px; /* Set logo size */
+        margin-right: 10px; /* Space between logo and company name */
+    }
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+    .navbar-nav li {
+        margin-right: 20px; /* Space between navigation items */
+    }
+
+    .navbar-nav .ht {
+        color: white; /* Link color */
+        font-size: 1.2rem; /* Font size */
+        transition: color 0.3s ease; /* Smooth hover transition */
+        text-decoration: none;
+    }
+
+        .navbar-nav .ht:hover {
+            color: #007bff; /* Hover color for links */
+        }
+
+    .navbar-nav.navbar-right {
+        margin-left: auto; /* Pushes right-side links to the right */
+    }
+
+/* Responsive styling for smaller devices */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+        .navbar-nav li {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+}
+
+.ad {
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 20px;
+    margin: 5px;
+    font: bold;
+}

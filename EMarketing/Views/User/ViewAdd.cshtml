@@ -1,0 +1,87 @@
+﻿@model EMarketing.Models.ViewAdd
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ViewAdd</title>
+    <link href="~/Content/StyleSheet2.css" rel="stylesheet" />
+    <link href="~/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet3.css" rel="stylesheet" />
+    <link rel="icon" href="~/Content/love.jpg">
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="background-color: #343a40; padding: 10px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="~/Content/love.jpg" alt="Logo" style="height: 30px; display: inline-block; margin-right: 10px;">
+                    Jaswanth
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Category", "Index", "User", null, new { @class = "ht" })</li>
+                <li>
+                    @if (Session["u_id"] != null)
+                    {
+                        @Html.ActionLink("Post an Ad", "CreateAd", "User", null, new { @class = "ht" })
+                    }
+                </li>
+
+            </ul>
+            <span><h2 class="ad" style="color: mediumvioletred">...E-Marketing Web Site...</h2></span>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    @if (Session["u_id"] == null)
+                    {
+                        @Html.ActionLink("Sign In", "Login", "User", null, new { @class = "ht" })
+                    }
+                </li>
+                <li>
+                    @if (Session["u_id"] == null)
+                    {
+                        @Html.ActionLink("Signup", "Signup", "User", null, new { @class = "ht" })
+                    }
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div>
+            <h1>@Model.pro_name <small>Ad-Id:@Model.pro_id</small></h1>
+        </div>
+        <img src="@Url.Content(@Model.pro_image)" alt="Toyota car image" style="width:800px; height:450px;" />
+        <div>
+            <h2>Description:</h2>
+            <p>@Model.pro_des</p>
+        </div>
+        <div>
+            <h3>Price:$ @Model.pro_price</h3>
+        </div>
+        <div>
+            <h3>Category: @Model.cat_name</h3>
+        </div>
+        <div>
+            <h3>Posted by @Model.u_name <img src="@Url.Content(Model.u_image)" alt="User profile image" style="height:40px; width:40Px" ; /></h3>
+        </div>
+        <div>
+            <h3>Contact: @Model.u_contact</h3>
+        </div>
+        <div>
+            @if (Convert.ToInt32(Session["u_id"]) == Convert.ToInt32(Model.prod))
+            {
+
+                @Html.ActionLink("Delete", "Delete", new { @class = "btn btn-info", id = Model.pro_id },
+              new { onclick = "return confirm('Are you sure you want to delete this item?');" })
+
+            }
+        </div>
+
+    </div>
+</body>
+</html>

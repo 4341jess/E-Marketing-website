@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<EMarketing.Models.tb1_category>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "ViewCategory";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View Category</title>
+    <link href="~/Content/StyleSheet2.css" rel="stylesheet" />
+    <link href="~/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" href="~/Content/love.jpg">
+    <link href="~/Content/StyleSheet3.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="background-color: #343a40; padding: 10px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="~/Content/love.jpg" alt="Logo" style="height: 30px; display: inline-block; margin-right: 10px;">
+                    jaswanth
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Category", "Index", "user", null, new { @class = "ht" })</li>
+                <li>
+                    @if (Session["u_id"] != null)
+                    {
+                        @Html.ActionLink("Post an Ad", "CreateAd", "User", null, new { @class = "ht" })
+                    }
+                </li>
+            </ul>
+            <span><h2 class="ad" style="color:mediumvioletred">...EMarketing Web Site...</h2></span>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    @if (Session["u_id"] == null)
+                    {
+                        @Html.ActionLink("Sign In", "login", "User", null, new { @class = "ht" })
+                    }
+                </li>
+                <li>
+                    @if (Session["u_id"] == null)
+                    {
+                        @Html.ActionLink("Signup", "Signup", "User", null, new { @class = "ht" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Log Out", "LogOut", "User", null, new { @class = "ht" })
+                    }
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container" style="height:1150px;">
+        <div class="row">
+            <div class="col-lg-12" style="height:100px; border:1px solid;">
+                <div class="row" style="margin-bottom:40px">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="col-lg-4" style="height:200px;margin-top:100px;">
+                                <img src="@Url.Content(item.cat_image)" style="height:100%; width:100%; border-radius:50px;" />
+                                <h4 style="color: #808080; font-family: 'Arial Round MT'; text-align:center;">@item.cat_name</h4>
+                                @Html.ActionLink("Buy", "Add", new { id = item.cat_id }, new { @class = "btn btn-danger btn-sm" })
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row" id="image-container">
+                    <div class="pagination" style="margin-left: 400px;">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="https://www.instagram.com/n.srinithin/profilecard/?igsh=cjk1NDJ4ZXZ1OGZj">Instagram</a>
+</body>
+</html>

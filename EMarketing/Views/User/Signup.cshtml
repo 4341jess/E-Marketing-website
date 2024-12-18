@@ -1,0 +1,62 @@
+﻿@model EMarketing.Models.tbl_user
+@using (Html.BeginForm("Signup",
+    "User",
+    FormMethod.Post,
+    new { enctype = "multipart/form-data" }))
+{
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SignUp</title>
+        <link rel="stylesheet" href="~/Content/StyleSheet1.css">
+    </head>
+    <body>
+        <div class="container">
+            <form id="loginForm">
+                <h2>SignUp</h2>
+                <div class="input-group">
+                    <table>
+                        <tr>
+
+                            <td>@Html.LabelFor(e => e.u_name)</td>
+                            <td>@Html.EditorFor(e => e.u_name)</td>
+                            <td> <span style="color:red">@Html.ValidationMessageFor(e => e.u_name)</span></td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>@Html.LabelFor(e => e.u_email)</td>
+                            <td>@Html.EditorFor(e => e.u_email)</td>
+                            <td> <span style="color:red">@Html.ValidationMessageFor(e => e.u_email)</span></td>
+                        </tr>
+                        <tr>
+
+                            <td>@Html.LabelFor(e => e.u_password)</td>
+                            <td>@Html.PasswordFor(e => e.u_password)</td>
+                            <td> <span style="color:red">@Html.ValidationMessageFor(e => e.u_password)</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>@Html.LabelFor(e => e.u_image)</td>
+                            <td><input type="file" name="imgfile" id="imgfile" class="form-control" required="required" /></td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(e => e.u_contact)</td>
+                            <td>@Html.EditorFor(e => e.u_contact)</td>
+
+                            <td> <span style="color:red">@Html.ValidationMessageFor(e => e.u_contact)</span></td>
+                        </tr>
+                    </table>
+
+                </div>
+                <input type="submit" value="SignUp" />
+                <p style="color:red">@ViewBag.error</p>
+            </form>
+        </div>
+        <script src="~/Content/JavaScript.js"></script>
+    </body>
+</html>
+}

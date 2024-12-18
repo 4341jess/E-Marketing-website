@@ -1,0 +1,60 @@
+﻿@model  EMarketing.Models.tbl_product
+@using (Html.BeginForm("CreateAd",
+    "User",
+    FormMethod.Post,
+    new { enctype = "multipart/form-data" }))
+{
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Form</title>
+        <link rel="stylesheet" href="~/Content/StyleSheet1.css">
+    </head>
+    <body>
+        <div class="container">
+            <form id="loginForm">
+                <h2>Post An Add</h2>
+
+                <table>
+                    <tr>
+
+                        <td>@Html.Label("Cat List")</td>
+                        <td>@Html.DropDownListFor(e => e.pro, ViewBag.categorylist as SelectList, "--select---", new { @class = "from-control" })</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>@Html.LabelFor(e => e.pro_name)</td>
+                        <td>@Html.EditorFor(e => e.pro_name)</td>
+                        <td> <span style="color:red">@Html.ValidationMessageFor(e => e.pro_name)</span></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(e => e.pro_image)</td>
+                        <td><input type="file" name="imgfile" id="imgfile" class="form-control" required="required" /></td>
+                    </tr>
+                    <tr>
+
+                        <td>@Html.LabelFor(e => e.pro_des)</td>
+                        <td>@Html.EditorFor(e => e.pro_des)</td>
+                        <td> <span style="color:red">@Html.ValidationMessageFor(e => e.pro_des)</span></td>
+                    </tr>
+                    <tr>
+
+                        <td>@Html.LabelFor(e => e.pro_price)</td>
+                        <td>@Html.EditorFor(e => e.pro_price)</td>
+                        <td> <span style="color:red">@Html.ValidationMessageFor(e => e.pro_price)</span></td>
+                    </tr>
+                </table>
+
+
+                <input type="submit" value="Add" />
+                <p style="color:red">@ViewBag.error</p>
+            </form>
+        </div>
+        <script src="~/Content/JavaScript.js"></script>
+    </body>
+</html>
+}
